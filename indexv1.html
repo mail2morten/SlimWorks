@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="nl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SlimWorks | AI & Automatisering voor Technische Vakmannen</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0fdfa',
+                            100: '#ccfbf1',
+                            400: '#2dd4bf',
+                            500: '#14b8a6',
+                            600: '#0d9488',
+                            900: '#134e4a',
+                            950: '#042f2e',
+                        },
+                        dark: {
+                            900: '#0a0a0a',
+                            800: '#171717',
+                            700: '#262626',
+                        }
+                    },
+                    backgroundImage: {
+                        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #050505;
+            color: #ffffff;
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .glass-card {
+            background: rgba(23, 23, 23, 0.4);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: background 0.3s, border 0.3s;
+        }
+        .glow-bg {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(20,184,166,0.15) 0%, rgba(0,0,0,0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            pointer-events: none;
+            transition: background 0.3s;
+        }
+
+        /* Light Mode Overrides */
+        body.light-mode { background-color: #f8fafc; color: #0f172a; }
+        body.light-mode .glass-card { background: rgba(255, 255, 255, 0.7); border: 1px solid rgba(0, 0, 0, 0.1); }
+        body.light-mode .glow-bg { background: radial-gradient(circle, rgba(20,184,166,0.2) 0%, rgba(255,255,255,0) 70%); }
+        body.light-mode .text-white { color: #0f172a !important; }
+        body.light-mode .text-gray-400 { color: #475569 !important; }
+        body.light-mode .text-gray-300 { color: #334155 !important; }
+        body.light-mode .text-gray-200 { color: #1e293b !important; }
+        body.light-mode .text-brand-100 { color: #115e59 !important; }
+        body.light-mode .bg-dark-900 { background-color: #ffffff !important; }
+        body.light-mode .bg-dark-900\/50 { background-color: rgba(255, 255, 255, 0.5) !important; }
+        body.light-mode .bg-dark-900\/30 { background-color: rgba(255, 255, 255, 0.3) !important; }
+        body.light-mode .bg-dark-800 { background-color: #f1f5f9 !important; }
+        body.light-mode .bg-dark-800\/80 { background-color: rgba(255, 255, 255, 0.8) !important; }
+        body.light-mode .bg-dark-950 { background-color: #e2e8f0 !important; }
+        body.light-mode .bg-dark-700 { background-color: #e2e8f0 !important; }
+        body.light-mode .border-white\/5 { border-color: rgba(0, 0, 0, 0.05) !important; }
+        body.light-mode .border-white\/10 { border-color: rgba(0, 0, 0, 0.1) !important; }
+        body.light-mode .border-dark-700 { border-color: #cbd5e1 !important; }
+        body.light-mode .text-dark-900 { color: #ffffff !important; }
+        body.light-mode .bg-white\/10 { background-color: rgba(0, 0, 0, 0.05) !important; }
+        body.light-mode .bg-white\/5 { background-color: rgba(0, 0, 0, 0.02) !important; }
+        body.light-mode .hover\:bg-white\/20:hover { background-color: rgba(0, 0, 0, 0.1) !important; }
+        body.light-mode .hover\:bg-white\/10:hover { background-color: rgba(0, 0, 0, 0.05) !important; }
+        body.light-mode input, body.light-mode select { color: #0f172a !important; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-500 selection:text-white relative">
+
+    <!-- Background Glow Effects -->
+    <div class="glow-bg top-[-200px] left-[-200px]"></div>
+    <div class="glow-bg top-[40%] right-[-300px] opacity-70"></div>
+    <div class="glow-bg bottom-[-200px] left-[10%] opacity-50"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 glass-card border-b-0 border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+                    <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-400 to-brand-600 flex items-center justify-center">
+                        <i data-lucide="cpu" class="text-white w-5 h-5"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight">SlimWorks<span class="text-brand-500">.</span></span>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#probleem" class="text-gray-300 hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-medium">De Muur</a>
+                        <a href="#oplossing" class="text-gray-300 hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-medium">Systeem</a>
+                        <a href="#integraties" class="text-gray-300 hover:text-white transition-colors px-3 py-2 rounded-md text-sm font-medium">Integraties</a>
+                    </div>
+                </div>
+                <div class="flex items-center gap-4">
+                    <button id="themeToggle" class="p-2 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-all text-gray-300 hover:text-white flex items-center justify-center focus:outline-none" aria-label="Wissel Thema">
+                        <i data-lucide="sun" id="icon-sun" class="w-5 h-5"></i>
+                        <i data-lucide="moon" id="icon-moon" class="w-5 h-5 hidden"></i>
+                    </button>
+                    <a href="#contact" class="hidden md:inline-flex items-center justify-center px-6 py-2.5 border border-transparent rounded-full shadow-sm text-sm font-medium text-white bg-white/10 hover:bg-white/20 border-white/20 transition-all duration-300 backdrop-blur-md">
+                        Plan een Scan
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-sm font-medium mb-8">
+                <span class="flex h-2 w-2 rounded-full bg-brand-400 animate-pulse"></span>
+                Het Autonome Kantoor voor Technische Vakmannen
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 leading-tight">
+                Stop met administreren.<br>
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 via-teal-300 to-blue-500">
+                    Start met installeren.
+                </span>
+            </h1>
+            
+            <p class="mt-4 max-w-2xl text-lg md:text-xl text-gray-400 mx-auto mb-10 leading-relaxed">
+                Wij lossen de administratieve muur op zodat jij kunt groeien. Koppel je werk in het veld direct aan Jortt, Moneybird of Exact met slimme AI-automatisering. 
+                <strong class="text-gray-200">Krijg je avonden terug.</strong>
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="#contact" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-full text-dark-900 bg-brand-400 hover:bg-brand-300 transition-all duration-300 shadow-[0_0_20px_rgba(45,212,191,0.3)] hover:shadow-[0_0_30px_rgba(45,212,191,0.5)]">
+                    Start de Knelpunten-Scan
+                    <i data-lucide="arrow-right" class="ml-2 w-5 h-5"></i>
+                </a>
+                <a href="#hoe-het-werkt" class="inline-flex items-center justify-center px-8 py-4 text-base font-medium rounded-full text-white bg-dark-800 border border-dark-700 hover:bg-dark-700 transition-all duration-300">
+                    Bekijk de systemen
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section id="probleem" class="py-24 border-t border-white/5 bg-dark-900/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Je bent een vakman,<br>geen typiste.</h2>
+                    <p class="text-gray-400 text-lg mb-6 leading-relaxed">
+                        De meeste technische eenmanszaken en MKB'ers lopen vast op hun eigen succes. De "Administratieve Muur" zorgt ervoor dat je na 19:00 uur nog offertes zit te tikken.
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center mt-1">
+                                <i data-lucide="x" class="text-red-400 w-4 h-4"></i>
+                            </div>
+                            <p class="ml-3 text-gray-300">Geld mislopen omdat leads te laat worden opgevolgd.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center mt-1">
+                                <i data-lucide="x" class="text-red-400 w-4 h-4"></i>
+                            </div>
+                            <p class="ml-3 text-gray-300">Dubbel invoerwerk van website naar mailbox naar boekhouding.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="flex-shrink-0 w-6 h-6 rounded-full bg-red-500/10 flex items-center justify-center mt-1">
+                                <i data-lucide="x" class="text-red-400 w-4 h-4"></i>
+                            </div>
+                            <p class="ml-3 text-gray-300">Geen rust in de avonduren door administratieve achterstand.</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="mt-12 lg:mt-0 relative">
+                    <div class="absolute inset-0 bg-gradient-to-r from-brand-500 to-blue-500 rounded-2xl transform rotate-3 opacity-20 blur-lg"></div>
+                    <div class="glass-card rounded-2xl p-8 relative">
+                        <div class="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-full bg-dark-700 flex items-center justify-center">
+                                    <i data-lucide="user" class="text-gray-400"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-white">Nieuwe Lead: Warmtepomp Installatie</p>
+                                    <p class="text-xs text-gray-400">Via Website Formulier</p>
+                                </div>
+                            </div>
+                            <span class="text-xs font-medium px-2 py-1 bg-brand-500/20 text-brand-400 rounded-md">Geautomatiseerd</span>
+                        </div>
+                        <div class="space-y-3">
+                            <div class="h-2 w-3/4 bg-dark-700 rounded animate-pulse"></div>
+                            <div class="h-2 w-1/2 bg-dark-700 rounded animate-pulse"></div>
+                            <div class="h-2 w-5/6 bg-dark-700 rounded animate-pulse"></div>
+                        </div>
+                        <div class="mt-6 p-4 bg-brand-500/10 border border-brand-500/20 rounded-xl flex items-center gap-4">
+                            <i data-lucide="check-circle-2" class="text-brand-400 w-6 h-6"></i>
+                            <p class="text-sm text-brand-100">Klant aangemaakt in Exact Online &amp; concept offerte staat klaar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services / MCP Tiers -->
+    <section id="oplossing" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-16">
+                <h2 class="text-brand-400 font-semibold tracking-wide uppercase text-sm mb-2">Onze Architectuur</h2>
+                <h3 class="text-3xl md:text-4xl font-bold">Van Eenmanszaak tot Schaalbaar Bedrijf</h3>
+                <p class="mt-4 text-gray-400">We bouwen modulaire systemen. Wat we vandaag voor jou als zzp'er bouwen, werkt straks naadloos voor je team van 10 man.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Tier 1 -->
+                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-transform duration-300 border-t-2 border-t-transparent hover:border-t-brand-400">
+                    <div class="w-12 h-12 rounded-xl bg-dark-800 border border-white/10 flex items-center justify-center mb-6">
+                        <i data-lucide="search" class="text-brand-400"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">1. De Knelpunten-Scan</h4>
+                    <p class="text-gray-400 mb-6 text-sm">
+                        We brengen je huidige processen in kaart. We zoeken de 'clog' in je bedrijf: waar verlies je tijd en geld door handmatig werk?
+                    </p>
+                    <ul class="text-sm text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-500"></i> Proces analyse</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-500"></i> Systeem mapping</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-500"></i> AI Roadmap</li>
+                    </ul>
+                </div>
+
+                <!-- Tier 2 -->
+                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-transform duration-300 border-t-2 border-t-brand-500 relative transform md:-translate-y-4 shadow-2xl shadow-brand-500/10">
+                    <div class="absolute top-0 right-0 px-3 py-1 bg-brand-500 text-dark-900 text-xs font-bold rounded-bl-xl rounded-tr-xl">Meest Gekozen</div>
+                    <div class="w-12 h-12 rounded-xl bg-brand-500/20 border border-brand-500/30 flex items-center justify-center mb-6">
+                        <i data-lucide="zap" class="text-brand-400"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">2. De Boekhoud-Automator</h4>
+                    <p class="text-gray-400 mb-6 text-sm">
+                        De brug tussen het veldwerk en je administratie. AI verwerkt leads en WhatsApp-spraakberichten direct tot offertes in Jortt of Moneybird.
+                    </p>
+                    <ul class="text-sm text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-500"></i> Voice-to-Invoice (AI)</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-500"></i> Lead-to-CRM flow</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-brand-500"></i> Jortt / Moneybird integratie</li>
+                    </ul>
+                </div>
+
+                <!-- Tier 3 -->
+                <div class="glass-card rounded-2xl p-8 hover:-translate-y-2 transition-transform duration-300 border-t-2 border-t-transparent hover:border-t-blue-400">
+                    <div class="w-12 h-12 rounded-xl bg-dark-800 border border-white/10 flex items-center justify-center mb-6">
+                        <i data-lucide="layers" class="text-blue-400"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3">3. De Schaalbare Backend</h4>
+                    <p class="text-gray-400 mb-6 text-sm">
+                        Voor groeiende teams. Een compleet operationeel herontwerp waarbij Exact Online de kern vormt van je voorraad en projectbeheer.
+                    </p>
+                    <ul class="text-sm text-gray-300 space-y-2">
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-500"></i> Exact Online ERP integratie</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-500"></i> Automatische planning</li>
+                        <li class="flex items-center gap-2"><i data-lucide="check" class="w-4 h-4 text-blue-500"></i> Personeel kennisbank (AI)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integrations Section -->
+    <section id="integraties" class="py-24 border-y border-white/5 bg-dark-900/30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h3 class="text-2xl md:text-3xl font-bold mb-12">Naadloze integratie met jouw gereedschap</h3>
+            
+            <div class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-70">
+                <!-- Logos text representation for structural demo -->
+                <div class="text-xl font-bold tracking-widest text-gray-400 flex items-center gap-2">
+                    <i data-lucide="calculator" class="w-6 h-6"></i> EXACT ONLINE
+                </div>
+                <div class="text-xl font-bold tracking-wider text-gray-400 flex items-center gap-2">
+                    <i data-lucide="bird" class="w-6 h-6"></i> MONEYBIRD
+                </div>
+                <div class="text-xl font-bold tracking-wider text-gray-400 flex items-center gap-2">
+                    <i data-lucide="pie-chart" class="w-6 h-6"></i> JORTT
+                </div>
+                <div class="text-xl font-bold tracking-wider text-gray-400 flex items-center gap-2">
+                    <i data-lucide="workflow" class="w-6 h-6"></i> MAKE.COM
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section id="contact" class="py-24 relative overflow-hidden">
+        <div class="absolute inset-0 bg-brand-900/20"></div>
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAiIGhlaWdodD0iMjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGNpcmNsZSBjeD0iMiIgY3k9IjIiIHI9IjIiIGZpbGw9InJnYmEoMjU1LDI1NSwyNTUsMC4wNSkiLz48L3N2Zz4=')] opacity-50"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 relative z-10 text-center">
+            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6">
+                Klaar om je avonden terug te claimen?
+            </h2>
+            <p class="text-xl text-gray-300 mb-10">
+                Plan een vrijblijvende Knelpunten-Scan. Ontdek binnen 30 minuten precies waar jouw administratieve muur staat en hoe AI deze doorbreekt.
+            </p>
+            <div class="bg-dark-800/80 backdrop-blur-xl p-8 rounded-2xl border border-white/10 max-w-md mx-auto shadow-2xl">
+                <form class="space-y-4 text-left" onsubmit="event.preventDefault(); alert('In een productieomgeving zou dit verstuurd worden naar de SlimWorks CRM via Make.com!');">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-1">Naam / Bedrijf</label>
+                        <input type="text" class="w-full bg-dark-900 border border-dark-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-colors" placeholder="Jansen Installatietechniek">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-400 mb-1">Huidige Boekhouding</label>
+                        <select class="w-full bg-dark-900 border border-dark-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brand-500 focus:ring-1 focus:ring-brand-500 transition-colors appearance-none">
+                            <option>Moneybird</option>
+                            <option>Jortt</option>
+                            <option>Exact Online</option>
+                            <option>Anders...</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-brand-500 hover:bg-brand-400 text-dark-900 font-bold text-lg rounded-lg px-4 py-4 transition-colors flex justify-center items-center gap-2 mt-4">
+                        Plan Intake Gesprek <i data-lucide="calendar" class="w-5 h-5"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 py-12 bg-dark-950 text-sm text-gray-500 text-center">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="flex items-center gap-2 mb-4 md:mb-0">
+                <i data-lucide="cpu" class="text-brand-500 w-5 h-5"></i>
+                <span class="font-bold text-white text-lg">SlimWorks.</span>
+            </div>
+            <p>Systems Thinking &amp; AI Automation voor Nederland.</p>
+            <div class="mt-4 md:mt-0 space-x-4">
+                <a href="#" class="hover:text-white transition-colors">KvK: 62.02 (IT Consultancy)</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Initialize Lucide Icons -->
+    <script>
+        lucide.createIcons();
+
+        // Theme Toggle Logic
+        const themeToggle = document.getElementById('themeToggle');
+        const iconSun = document.getElementById('icon-sun');
+        const iconMoon = document.getElementById('icon-moon');
+        const body = document.body;
+
+        themeToggle.addEventListener('click', () => {
+            body.classList.toggle('light-mode');
+            if (body.classList.contains('light-mode')) {
+                iconSun.classList.add('hidden');
+                iconMoon.classList.remove('hidden');
+            } else {
+                iconSun.classList.remove('hidden');
+                iconMoon.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
